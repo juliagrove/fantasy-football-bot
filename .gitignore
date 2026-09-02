@@ -1,0 +1,20 @@
+.env
+espn_auth_state.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Playwright / browser binaries
+node_modules/
+ms-playwright/
+.playwright/
+
+# OS
+.DS_Store
+
+# Unused files
+deprecated/
