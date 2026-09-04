@@ -1,0 +1,40 @@
+name: Trading Agent
+
+on:
+  # 3pm EST on Tue/Wed/Fri/Sat, restricted to the NFL season (Sep-Jan).
+  schedule:
+    - cron: "0 20 * 9-12,1 2,3,5,6"
+  workflow_dispatch: {}
+
+concurrency:
+  group: trading-agent
+  cancel-in-progress: false
+
+jobs:
+  review-trades:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      LEAGUE_ID: ${{ secrets.LEAGUE_ID }}
+      BOT_TEAM_ID: ${{ secrets.BOT_TEAM_ID }}
+      SEASON: ${{ secrets.SEASON }}
+      ESPN_S2: ${{ secrets.ESPN_S2 }}
+      SWID: ${{ secrets.SWID }}
+      PLATFORM_VERSION: ${{ secrets.PLATFORM_VERSION }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LANGSMITH_TRACING: ${{ secrets.LANGSMITH_TRACING }}
+      LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+      LANGSMITH_PROJECT: ${{ secrets.LANGSMITH_PROJECT }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: player-agent/requirements.txt
+
+      - run: pip install -r player-agent/requirements.txt
+
+      - run: python trading-subagent/main.py
+        working-directory: player-agent

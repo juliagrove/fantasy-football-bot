@@ -1,0 +1,40 @@
+name: Lineup Optimizer
+
+on:
+  # Single daily run at 11am EST on Thu/Sun/Mon
+  schedule:
+    - cron: "0 16 * 9-12,1 0,1,4"
+  workflow_dispatch: {}
+
+concurrency:
+  group: lineup-optimizer
+  cancel-in-progress: false
+
+jobs:
+  optimize-lineup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      LEAGUE_ID: ${{ secrets.LEAGUE_ID }}
+      BOT_TEAM_ID: ${{ secrets.BOT_TEAM_ID }}
+      SEASON: ${{ secrets.SEASON }}
+      ESPN_S2: ${{ secrets.ESPN_S2 }}
+      SWID: ${{ secrets.SWID }}
+      PLATFORM_VERSION: ${{ secrets.PLATFORM_VERSION }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LANGSMITH_TRACING: ${{ secrets.LANGSMITH_TRACING }}
+      LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+      LANGSMITH_PROJECT: ${{ secrets.LANGSMITH_PROJECT }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: player-agent/requirements.txt
+
+      - run: pip install -r player-agent/requirements.txt
+
+      - run: python lineup-optimizer-subagent/main.py
+        working-directory: player-agent
