@@ -15,16 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      LEAGUE_ID: ${{ secrets.LEAGUE_ID }}
-      BOT_TEAM_ID: ${{ secrets.BOT_TEAM_ID }}
-      SEASON: ${{ secrets.SEASON }}
+      LEAGUE_ID: ${{ vars.LEAGUE_ID }}
+      BOT_TEAM_ID: ${{ vars.BOT_TEAM_ID }}
+      SEASON: ${{ vars.SEASON }}
       ESPN_S2: ${{ secrets.ESPN_S2 }}
       SWID: ${{ secrets.SWID }}
-      PLATFORM_VERSION: ${{ secrets.PLATFORM_VERSION }}
+      PLATFORM_VERSION: ${{ vars.PLATFORM_VERSION }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      LANGSMITH_TRACING: ${{ secrets.LANGSMITH_TRACING }}
+      LANGSMITH_TRACING: ${{ vars.LANGSMITH_TRACING }}
       LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
-      LANGSMITH_PROJECT: ${{ secrets.LANGSMITH_PROJECT }}
+      LANGSMITH_PROJECT: ${{ vars.LANGSMITH_PROJECT }}
     steps:
       - uses: actions/checkout@v4
 
