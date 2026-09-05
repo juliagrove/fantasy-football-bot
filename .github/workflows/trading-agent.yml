@@ -23,10 +23,11 @@ jobs:
       SWID: ${{ secrets.SWID }}
       PLATFORM_VERSION: ${{ vars.PLATFORM_VERSION }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      GROK_API_KEY: ${{secrets.GROK_API_KEY}}
+      GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
       LANGSMITH_TRACING: ${{ vars.LANGSMITH_TRACING }}
       LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
       LANGSMITH_PROJECT: ${{ vars.LANGSMITH_PROJECT }}
+      BOT_NAME: ${{ vars.BOT_NAME }}
     steps:
       - uses: actions/checkout@v4
 
