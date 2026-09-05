@@ -18,6 +18,7 @@ jobs:
       LEAGUE_ID: ${{ vars.LEAGUE_ID }}
       BOT_TEAM_ID: ${{ vars.BOT_TEAM_ID }}
       SEASON: ${{ vars.SEASON }}
+      TOPIC_ID: ${{ secrets.TOPIC_ID }}
       ESPN_S2: ${{ secrets.ESPN_S2 }}
       SWID: ${{ secrets.SWID }}
       PLATFORM_VERSION: ${{ vars.PLATFORM_VERSION }}
