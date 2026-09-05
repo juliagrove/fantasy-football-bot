@@ -79,7 +79,7 @@ async def post_update(prompt: str, model: str = "grok-4.6") -> dict:
     llm = ChatOpenAI(model=model, api_key=GROK_API_KEY, base_url=GROK_BASE_URL, max_tokens=256)
     response = await llm.ainvoke(prompt)
     message = response.content if isinstance(response.content, str) else str(response.content)
-    logger.info("post_update: posting -> %s", message)
+    logger.info("post_update: posting message")
     return await send_league_message.ainvoke({"message": message})
 
 
@@ -102,7 +102,7 @@ async def post_opponent_message(model: str = "grok-4.6") -> dict:
 
     messages = await get_opponent_chat.ainvoke({})
     if isinstance(messages, dict) and "error" in messages:
-        logger.error("post_opponent_message: get_opponent_chat failed: %s", messages)
+        logger.error("post_opponent_message: get_opponent_chat failed")
         return messages
 
     prompt = OPPONENT_CHAT_PROMPT.format(

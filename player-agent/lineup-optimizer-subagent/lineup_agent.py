@@ -141,7 +141,7 @@ def build_lineup_graph(scoring_period_id: int, model: str = "claude-opus-4-8"):
             chat_result = await post_update(
                 UPDATED_BENCH_PROMPT.format(bot_name=BOT_NAME, changes=changes)
             )
-            logger.info("execute_lineup: chat notified -> %s", chat_result)
+            logger.info("execute_lineup: chat notified")
 
         return {
             "decision": "CHANGE_LINEUP",

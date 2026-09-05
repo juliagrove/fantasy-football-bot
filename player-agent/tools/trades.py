@@ -198,7 +198,7 @@ def _submit_trade_response(trade_id: str, txn_type: str, scoring_period_id: int,
         return {"error": response.status_code, "details": response.json()}
 
     data = response.json()
-    logger.info("Trade %s (%s): status=%s", trade_id, txn_type, data.get("status"))
+    logger.info("Trade (%s) status=%s", txn_type, data.get("status"))
     return data
 
 

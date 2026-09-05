@@ -120,11 +120,11 @@ def build_trade_graph(trade_id: str, scoring_period_id: int, model: str = "claud
         if tool_call["name"] == "accept_this_trade":
             decision = "ACCEPT"
             result = await accept_this_trade.ainvoke({})
+            logger.info("Accepted trade")
         else:
             decision = "REJECT"
             result = await reject_this_trade.ainvoke({})
-
-        logger.info("execute_trade: %s trade %s -> %s", decision, trade_id, result)
+            logger.info("Rejected trade")
 
         if decision == "REJECT" and result.get("status") == "EXECUTED":
             chat_result = await post_update(

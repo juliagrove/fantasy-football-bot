@@ -67,7 +67,6 @@ async def main() -> None:
             logger.error("Failed to fetch roster: %s", roster_response)
             sys.exit(1)
 
-        logger.info("Trade %s from %s...", trade["trade_id"], trade["proposed_by_team"])
         attempted_trade_ids.add(trade["trade_id"])
 
         # Rebuilt per trade - trade_id/scoring_period_id are baked into the
@@ -77,7 +76,7 @@ async def main() -> None:
         try:
             outcome = await review_trade(graph, trade, roster_response["roster"])
         except Exception:
-            logger.exception("Failed to review trade %s", trade["trade_id"])
+            logger.exception("Failed to review trade")
             had_failures = True
             continue
         logger.info("Trade %s: %s - %s", trade["trade_id"], outcome["decision"], outcome["reasoning"])

@@ -136,7 +136,6 @@ def _send_chat(topic_id: str, message: str, label: str) -> dict:
         return {"error": response.status_code, "details": response.json()}
 
     data = response.json()
-    logger.info("%s: posted message id=%s", label, data[0].get("id") if data else None)
     return data
 
 
