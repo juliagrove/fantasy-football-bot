@@ -1,9 +1,9 @@
 name: Lineup Optimizer
 
 on:
-  # Single daily run at 11am EST on Thu/Sun/Mon
+  # Single daily run at 12:13pm EST on Thu/Sun/Mon
   schedule:
-    - cron: "0 16 * 9-12,1 0,1,4"
+    - cron: "13 16 * 9-12,1 0,1,4"
   workflow_dispatch: {}
 
 concurrency:

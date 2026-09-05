@@ -1,9 +1,9 @@
 name: Trading Agent
 
 on:
-  # 3pm EST on Tue/Wed/Fri/Sat, restricted to the NFL season (Sep-Jan).
+  # 3:13pm EST on Tue/Wed/Fri/Sat, restricted to the NFL season (Sep-Jan).
   schedule:
-    - cron: "0 20 * 9-12,1 2,3,5,6"
+    - cron: "13 19 * 9-12,1 2,3,5,6"
   workflow_dispatch: {}
 
 concurrency:
