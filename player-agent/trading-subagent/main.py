@@ -79,7 +79,7 @@ async def main() -> None:
             logger.exception("Failed to review trade")
             had_failures = True
             continue
-        logger.info("Trade %s: %s - %s", trade["trade_id"], outcome["decision"], outcome["reasoning"])
+        logger.info("Trade: %s - %s", outcome["decision"], outcome["reasoning"])
 
     if had_failures:
         logger.error("Finished with one or more trade review failures.")
